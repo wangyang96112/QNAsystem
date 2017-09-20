@@ -152,7 +152,6 @@ def Question_features(sentence):
 #can be implemented to parse a new annotated dataset
 
 Questions = pd.read_csv('sampledatabase.csv', index_col = 0)
-print(Questions)
 
 ##matching the questions with the informations stored in the database
 #example    
@@ -162,50 +161,7 @@ print(result)
 
 question_from_same_class = Questions[Questions['CLASS'] == result['Class']]
 
-#The function below will count the number of occurances of the question entities appear in the sentence entities,
-#question adjective appear in the sentence adjectives, question nouns appear in the sentence nouns.
-################################################################
-##Creating a fucntion to reformat column entries from the dataframe to one which can be used to analyse
-################################################################
 
-
-## When using functions defined by the forloop, it returns duplicate answers, will need to look into further
-
-#==============================================================================
-# def tidying_Nouns(processeddataframe):
-#     AnswerNouns = []
-#     for items in processeddataframe['AnswerNouns']:
-#         item = items[1:-1].split(',')
-#         a=[]
-#         for i in item:
-#             c = i.strip().lower()[1:-1]
-#             a.append(c)
-#             AnswerNouns.append(a)
-#     return(AnswerNouns)
-# 
-# def tidying_Entities(processeddataframe):
-#     AnswerEntities = []    
-#     for items in processeddataframe['AnswerEntities']:
-#         item = items[1:-1].split(',')
-#         a=[]
-#         for i in item:
-#             c = i.strip().lower()[1:-1]
-#             a.append(c)
-#             AnswerEntities.append(a)
-#     return(AnswerEntities)
-# 
-# def tidying_Adjectives(processeddataframe):
-#     AnswerAdjectives = []
-#     for items in processeddataframe['AnswerAdjectives']:
-#         item = items[1:-1].split(',')
-#         a=[]
-#         for i in item:
-#             c = i.strip().lower()[1:-1]
-#             a.append(c)
-#             AnswerAdjectives.append(a)    
-#     return(AnswerAdjectives)
-#==============================================================================
-    
 ######################################################
 #The for loops the functions above is based upon, the entire section below is the answer
 #selection method based upon matching the entities of the question entered, and the 
@@ -240,117 +196,7 @@ for items in question_from_same_class['AnswerAdjectives']:
         c = i.strip().lower()[1:-1]
         a.append(c)
     AnswerAdjectives.append(set(a))
-#
-#######################################################
-##########The counting functions for each feature
-#######################################################
-#def counting_adjectives(results,rows):
-#    counts = 0
-#    adjectives = results['Adjectives']
-#    for items in rows:
-#        if items in adjectives:
-#            counts += 1
-#    return(counts)
-#
-#
-#a = []
-#attl = []
-#for rows in AnswerAdjectives:
-#    attl.append(len(rows))
-#    unique = list(set(rows))
-#    d = counting_adjectives(result, rows)
-#    a.append(d)
-#
-#
-####################################################### 
-#def counting_entities(results,rows):
-#    counts = 0
-#    entities = results['Named Entities']
-#    for items in rows:
-#        if items in entities:
-#            counts += 1
-#    return(counts)
-#
-#
-#b = []
-#bttl = []
-#for rows in AnswerEntities:
-#    bttl.append(len(rows))
-#    unique = list(set(rows))
-#    d = counting_entities(result, rows)
-#    b.append(d)
-#
-#
-#######################################################
-#def counting_nouns(results,rows):
-#    counts = 0
-#    nouns = results['Nouns']
-#    for items in rows:
-#        if items in nouns:
-#            counts += 1
-#    return(counts)
-#
-#
-#c = []
-#cttl = []
-#for rows in AnswerNouns:
-#    cttl.append(len(rows))
-#    unique = list(set(rows))
-#    d = counting_nouns(result, rows)
-#    c.append(d)
-#
-#######################################################
-#e = zip(a,b,c)
-#eeee = [sum(x) for x in e]
-#eeee1 = eeee
-#
-##ettl = zip(attl,bttl,cttl)
-##eeeettl = [sum(x) for x in ettl]
-##eeee1ttl = eeeettl
-#
-#apcnt = list(np.divide(a,attl))
-#bpcnt = list(np.divide(b,bttl))
-#cpcnt = list(np.divide(c,cttl))
-#
-#pcnts = zip(apcnt,bpcnt,cpcnt)
-#pcntttl = [sum(x) for x in pcnts]
-#pcntttl1 = pcntttl
-##ann = list(np.divide(eeee,eeeettl))
-#import heapq
-#
-##l = heapq.nlargest(3, eeee)
-##l22 = heapq.nlargest(3, ann)
-#l222 = heapq.nlargest(3, pcntttl)
-#######################################################
-#from collections import Counter
-#
-#counts = Counter(l222) # so we have: {'name':3, 'state':1, 'city':1, 'zip':2}
-#for s,num in counts.items():
-#    if (num > 1) and (s != 0): # ignore strings that only appear once
-#        for suffix in range(1, num + 1): # suffix starts at 1 and increases by 1 each time
-#            pcntttl[pcntttl.index(s)] = s + suffix # replace each appearance of s
-#
-#######################################################
-##l1 = heapq.nlargest(3, eeee)
-##l221 = heapq.nlargest(3, ann)
-#l2221 = heapq.nlargest(3, pcntttl)
-#
-#for i in l2221:
-#    print(pcntttl.index(i))
-#
-#def retrieving_answer(dataframe):
-#    n = []
-#    for i in l2221:
-#        n.append(pcntttl.index(i))
-#    answers = {}
-#    for i in n:
-#        answers[i] = dataframe['ANSWER'].iloc[i]
-#    return(answers)
-#
-#nn = retrieving_answer(question_from_same_class)
-#for key, value in nn.items():
-#    print(key,': ', value)
-#
+
 ######################################################
 #The code below is a match and selection method based with the same as the idea above,
 #but it uses the entities of the questions instead of the 1st sentence of the answers.
@@ -385,124 +231,7 @@ for items in question_from_same_class['QuestionsAdjectives']:
         a.append(c)
     QuestionsAdjectives.append(set(a))
 
-#######################################################
-##########The counting functions for each feature
-#######################################################
-#
-#
-#def counting_adjectives(results,rows):
-#    counts = 0
-#    adjectives = results['Adjectives']
-#    for items in rows:
-#        if items in adjectives:
-#            counts += 1
-#    return(counts)
-#
-#
-#a = []
-#attl = []
-#for rows in QuestionsAdjectives:
-#    attl.append(len(rows))
-#    unique = list(set(rows))
-#    d = counting_adjectives(result, rows)
-#    a.append(d)
-#
-#
-####################################################### 
-#def counting_entities(results,rows):
-#    counts = 0
-#    entities = results['Named Entities']
-#    for items in rows:
-#        if items in entities:
-#            counts += 1
-#    return(counts)
-#
-#
-#b = []
-#bttl = []
-#for rows in QuestionsEntities:
-#    bttl.append(len(rows))
-#    unique = list(set(rows))
-#    d = counting_entities(result, rows)
-#    b.append(d)
-#
-#
-#######################################################
-#def counting_nouns(results,rows):
-#    counts = 0
-#    nouns = results['Nouns']
-#    for items in rows:
-#        if items in nouns:
-#            counts += 1
-#    return(counts)
-#
-#
-#c = []
-#cttl = []
-#for rows in QuestionsNouns:
-#    cttl.append(len(rows))
-#    unique = list(set(rows))
-#    d = counting_nouns(result, rows)
-#    c.append(d)
-#
-#######################################################
-#e = zip(a,b,c)
-#eeee = [sum(x) for x in e]
-#eeee1 = eeee
-#
-#ettl = zip(attl,bttl,cttl)
-#eeeettl = [sum(x) for x in ettl]
-#eeee1ttl = eeeettl
-#
-##apcnt = list(np.divide(a,attl))
-##bpcnt = list(np.divide(b,bttl))
-##cpcnt = list(np.divide(c,cttl))
-##
-##pcnts = zip(apcnt,bpcnt,cpcnt)
-##pcntttl = [sum(x) for x in pcnts]
-##pcntttl1 = pcntttl
-#ann = list(np.divide(eeee,eeeettl))
-#import heapq
-#
-##l = heapq.nlargest(3, eeee)
-#l22 = heapq.nlargest(3, ann)
-##l222 = heapq.nlargest(3, pcntttl)
-#######################################################
-#from collections import Counter
-#
-#counts = Counter(l22) # so we have: {'name':3, 'state':1, 'city':1, 'zip':2}
-#for s,num in counts.items():
-#    if (num > 1) and (s != 0): # ignore strings that only appear once
-#        for suffix in range(1, num + 1): # suffix starts at 1 and increases by 1 each time
-#            ann[ann.index(s)] = s + suffix # replace each appearance of s
-#
-#######################################################
-##l1 = heapq.nlargest(3, eeee)
-#l221 = heapq.nlargest(3, ann)
-##l2221 = heapq.nlargest(3, pcntttl)
-#
-#for i in l221:
-#    print(ann.index(i))
-#
-#def retrieving_Questions(dataframe):
-#    n = []
-#    for i in l221:
-#        n.append(ann.index(i))
-#    Questionss = {}
-#    for i in n:
-#        Questionss[i] = dataframe['ANSWER'].iloc[i]
-#    return(Questionss)
-#
-#nn = retrieving_Questions(question_from_same_class)
-#for key, value in nn.items():
-#    print(key,': ', value)
 
-
-######################################################
-#The code below is a match and selection method based with the same as the idea above,
-#but it uses the entities of both the questions and the 1st sentence of the answers.
-#it's counted twice, once using the question entites, and again using the answer entities.
-######################################################
 #####################################################
 #####Appending the entities of the questions and 1st sentences
 #####################################################
@@ -538,7 +267,6 @@ for rows in Adjectives:
     unique = list(rows)
     d = counting_adjectives(result, rows)
     a.append(d)
-
 
 ###################################################### 
 def counting_entities(results,rows):
