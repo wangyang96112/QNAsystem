@@ -152,6 +152,7 @@ def Question_features(sentence):
 #can be implemented to parse a new annotated dataset
 
 Questions = pd.read_csv('sampledatabase.csv', index_col = 0)
+print(Questions)
 
 ##matching the questions with the informations stored in the database
 #example    

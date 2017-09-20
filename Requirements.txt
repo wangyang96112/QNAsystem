@@ -1,13 +1,17 @@
 Module Requirements:
-1: nltk, install method:
+1: nltk, install method from cmd: python -m pip install nltk
 
-2: pandas, install method:
+2: pandas, install method from cmd: python -m pip install pandas
 
-3: string, install method:
+6: scipy, install method:python -m pip install pandas
 
-4: collections, install method:
+12: sklearn, install method: python -m pip install sklearn
 
-5: google cloud sofware, install method: $ pip install --upgrade google-cloud
+5: google cloud sofware, install method: python -m pip install google.cloud
+whilst using mine key:
+creating a new user enviroment variable called GOOGLE_APPLICATION_CREDENTIALS, and for the value, you just need to input the json key file location.
+
+when need to setup new account
 Setting up API keys
 To create your application's API key:
 
@@ -20,17 +24,4 @@ Click Create credentials and then select service account key.
 select your service account or setup a new one
 select key type json
 Then create a enviroment variable with in your system called GOOGLE_APPLICATION_CREDENTIALS, with its path to the the path to the file
-export GOOGLE_APPLICATION_CREDENTIALS=PATH_TO_KEY_FILE
-Replace PATH_TO_KEY_FILE with the path to your JSON service account file. GOOGLE_APPLICATION_CREDENTIALS should be written out as-is (it's not a placeholder in the example above).
 
-6: csv, install method:
-
-8: numpy, install method:
-
-9: pickle, install method:
-
-10: heapq, install method:
-
-11: six, install method:
-
-12: sklearn, install method:

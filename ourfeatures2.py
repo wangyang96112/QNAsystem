@@ -29,7 +29,7 @@ import re
 import string
 import itertools
 
-line = ["xxx","Oracle 12.2 will be released for on-premises users on 15 March 2017",0,"S"]
+line = ["xxx","Oracle 12.2 will be released? for on-premises, users on. 15 March 2017",0,"S"]
 
 pos = []           #list of PartsOfSpeech
 
@@ -150,7 +150,8 @@ feature_keys = ["id",
 def strip_sentence(sentence):
     sentence = sentence.strip(",")
     sentence = ''.join(filter(lambda x: x in string.printable, sentence))  #strip out non-alpha-numerix
-    sentence = sentence.translate(str.maketrans('','',string.punctuation)) #strip punctuation
+    #sentence = sentence.translate(str.maketrans('','',string.punctuation)) #strip punctuation
+    sentence = ''.join(x.strip(string.punctuation)+' ' for x in sentence.split())
     return(sentence)
 
 def word_extract(sentence, pattern):
