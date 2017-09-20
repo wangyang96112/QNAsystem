@@ -3,9 +3,11 @@ Module Requirements:
 
 2: pandas, install method from cmd: python -m pip install pandas
 
-6: scipy, install method:python -m pip install pandas
+3: scipy, install method:python -m pip install scipy
+			note, if pip dosnt work, you can go on https://pypi.python.org/pypi/scipy and download the wheel thats matches your python and system version.
+			then use python -m pip install filepath(you can drag the file into the CMD for this)
 
-12: sklearn, install method: python -m pip install sklearn
+4: scikit-learn, install method: python -m pip install scikit-learn
 
 5: google cloud sofware, install method: python -m pip install google.cloud
 whilst using mine key:
