@@ -1,0 +1,22 @@
+Module Requirements:
+1: nltk, install method:
+
+2: pandas, install method:
+
+3: string, install method:
+
+4: collections, install method:
+
+5: google cloud sofware, install method: $ pip install --upgrade google-cloud
+
+6: csv, install method:
+
+8: numpy, install method:
+
+9: pickle, install method:
+
+10: heapq, install method:
+
+11: six, install method:
+
+12: sklearn, install method:
