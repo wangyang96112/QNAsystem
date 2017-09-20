@@ -8,6 +8,20 @@ Module Requirements:
 4: collections, install method:
 
 5: google cloud sofware, install method: $ pip install --upgrade google-cloud
+Setting up API keys
+To create your application's API key:
+
+Go to the Cloud Platform Console. https://console.cloud.google.com/
+From the projects list, select a project or create a new one.
+Then on the search bar within the page, search for Google Cloud Natural Language API, and click enable when you click the result showed up within the search bar.
+If the APIs & services page isn't already open, open the left side menu and select APIs & services.
+On the left, choose Credentials.
+Click Create credentials and then select service account key.
+select your service account or setup a new one
+select key type json
+Then create a enviroment variable with in your system called GOOGLE_APPLICATION_CREDENTIALS, with its path to the the path to the file
+export GOOGLE_APPLICATION_CREDENTIALS=PATH_TO_KEY_FILE
+Replace PATH_TO_KEY_FILE with the path to your JSON service account file. GOOGLE_APPLICATION_CREDENTIALS should be written out as-is (it's not a placeholder in the example above).
 
 6: csv, install method:
 
