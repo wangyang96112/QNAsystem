@@ -63,6 +63,7 @@ with open(FNAME1, 'wb') as f:
 with open(FNAME1, 'rb') as f:
     clf = cPickle.load(f)
 
+#Example of using the classifier
 sentence = 'what is the causes of type 1 diabetes?'
 
 keys = ["id",

@@ -23,8 +23,6 @@ from nltk.corpus import stopwords
 
 import pandas as pd  # Use Pandas to create pandas Series in features_series()  
 
-import csv
-import hashlib
 import re
 import string
 import itertools

@@ -86,7 +86,7 @@ def Question_features(sentence):
         
 
 
-Questions = pd.read_csv('sampledatabase.csv', index_col = 0)
+Questions = pd.read_csv('sampledatabase.csv', index_col = 'ID', encoding = 'utf-8')
 
 ##matching the questions with the informations stored in the database
 #example    
@@ -249,19 +249,10 @@ ettl = zip(attl,bttl,cttl)
 eeeettl = [sum(x) for x in ettl]
 eeee1ttl = eeeettl
 
-#apcnt = list(np.divide(a,attl))
-#bpcnt = list(np.divide(b,bttl))
-#cpcnt = list(np.divide(c,cttl))
-#
-#pcnts = zip(apcnt,bpcnt,cpcnt)
-#pcntttl = [sum(x) for x in pcnts]
-#pcntttl1 = pcntttl
 ann = list(np.divide(eeee,eeeettl))
 
-
-#l = heapq.nlargest(3, eeee)
 l22 = heapq.nlargest(3, ann)
-#l222 = heapq.nlargest(3, pcntttl)
+
 ######################################################
 
 counts = Counter(l22) # so we have: {'name':3, 'state':1, 'city':1, 'zip':2}
@@ -271,12 +262,7 @@ for s,num in counts.items():
             ann[ann.index(s)] = s + suffix # replace each appearance of s
 
 ######################################################
-#l1 = heapq.nlargest(3, eeee)
 l221 = heapq.nlargest(3, ann)
-#l2221 = heapq.nlargest(3, pcntttl)
-
-#for i in l221:
-#    print(ann.index(i))
 
 def retrieving_Questions(dataframe):
     n = []
@@ -290,7 +276,7 @@ def retrieving_Questions(dataframe):
 nn = retrieving_Questions(question_from_same_class)
 print(sentence)
 for key, value in nn.items():
-    print(key,': ', value)
+    print('Answer ID', key,': ', value)
 
 
 

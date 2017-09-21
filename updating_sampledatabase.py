@@ -12,16 +12,16 @@ import pandas as pd
 import nltk
 import functions_for_extracting_pronouns_and_entities_using_api as extract
 
-sampledatabase = pd.read_csv('sampledatabase.csv', index_col = 0) #loading the original database
+sampledatabase = pd.read_csv('sampledatabase.csv', index_col = 'ID', encoding = 'utf-8') #loading the original database
 
 #######################################################################
 ### Analysing the new entries and appending them to the orginal sampledatabase
 #######################################################################
 
-NewQuestions = pd.read_csv('CSVfiles\\NewQuestionsWithAnswersAndClassCSV.csv')
+NewQuestions = pd.read_csv('CSVfiles\\NewQuestionsWithAnswersAndClassCSV.csv', index_col = 'ID', encoding = 'utf-8')
 
 Answers = NewQuestions['ANSWER']
-Questionsonly = NewQuestions['SENTENCE']
+Questionsonly = NewQuestions['QUESTION']
 
 firstsent = []
 
@@ -72,22 +72,21 @@ NewQuestions['AnswerEntities'] = AnswerEntities
 
 sampledatabase = sampledatabase.append(NewQuestions)
 sampledatabase = sampledatabase.reset_index()
-id1 = []
-for i in range(1,len(sampledatabase['ID'])+1):
-    id1.append(i)
+ID = []
+for i in range(len(sampledatabase['ANSWER'])):
+    ID.append(i)
+sampledatabase['ID'] = ID
+sampledatabase.to_csv('sampledatabasewithDuplicates.csv', index=False, encoding = 'utf-8')
 
-sampledatabase['ID'] = id1
-sampledatabase.to_csv('sampledatabasewithDuplicates.csv')
-
-duplicates = sampledatabase.duplicated('SENTENCE', keep = False)
+duplicates = sampledatabase.duplicated('QUESTION', keep = False)
 duplicateentries = sampledatabase[duplicates]
-duplicateentries.to_csv('Duplicate_Questions.csv')
+duplicateentries = duplicateentries.sort_values(by = 'QUESTION')
+duplicateentries.to_csv('Duplicate_Questions.csv', index=False, encoding = 'utf-8')
 
-sampledatabasenoduplicates = sampledatabase.drop_duplicates('SENTENCE', keep = 'first')
-sampledatabasenoduplicates = sampledatabasenoduplicates.reset_index()
-id1 = []
-for i in range(1,len(sampledatabasenoduplicates['ID'])+1):
-    id1.append(i)
+sampledatabasenoduplicates = sampledatabase.drop_duplicates('QUESTION', keep = 'first')
+ID = []
+for i in range(len(sampledatabasenoduplicates['ANSWER'])):
+    ID.append(i)
 
-sampledatabasenoduplicates['ID'] = id1
-sampledatabasenoduplicates.to_csv('sampledatabase1.csv')
+sampledatabasenoduplicates['ID'] = ID
+sampledatabasenoduplicates.to_csv('sampledatabase1.csv', index=False, encoding = 'utf-8')

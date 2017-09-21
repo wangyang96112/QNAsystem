@@ -16,16 +16,20 @@ Created on Wed Sep 20 15:52:06 2017
 #the pograms below will be focusing on extracting the adjectives and nouns and entities, and use those as search and match.
 import pandas as pd
 import nltk
+import os
+import sys
+os.chdir(os.path.dirname(sys.argv[0]))
 import functions_for_extracting_pronouns_and_entities_using_api as extract
+
 
 ################################################################
 ##Parsing the 1st sentence of the answer and extracting the adjectives and nouns
 ################################################################
 
-Questions = pd.read_csv('CSVfiles\\QuestionsWithAnswersAndClassCSV.csv')
+Questions = pd.read_csv('CSVfiles\\QuestionsWithAnswersAndClassCSV.csv', index_col = 'ID')
 
 Answers = Questions['ANSWER']
-Questionsonly = Questions['SENTENCE']
+Questionsonly = Questions['QUESTION']
 
 firstsent = []
 
@@ -73,7 +77,7 @@ Questions['QuestionsEntities'] = QuestionsEntities
 Questions['AnswerAdjectives'] = AnswerAdjectives
 Questions['AnswerNouns'] = AnswerNouns
 Questions['AnswerEntities'] = AnswerEntities
-Questions.to_csv('sampledatabase.csv')
+Questions.to_csv('sampledatabase.csv', encoding = 'utf-8')
 #this part will take a while, so ill omit those part of the code, and store and load the result as another csv file
 #can be implemented to parse a new annotated dataset
 
