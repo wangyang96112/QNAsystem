@@ -1,5 +1,9 @@
 Module Requirements:
 1: nltk, install method from cmd: python -m pip install nltk
+initiate your python shell
+type the following codes:
+import nltk
+nltk.download('popular')
 
 2: pandas, install method from cmd: python -m pip install pandas
 
@@ -9,7 +13,7 @@ Module Requirements:
 
 4: scikit-learn, install method: python -m pip install scikit-learn
 
-5: google cloud sofware, install method: python -m pip install google.cloud
+6: google cloud sofware, install method: python -m pip install google.cloud
 whilst using mine key:
 creating a new user enviroment variable called GOOGLE_APPLICATION_CREDENTIALS, and for the value, you just need to input the json key file location.
 

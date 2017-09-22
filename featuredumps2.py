@@ -5,9 +5,10 @@
 
 #Input CSV fmt:  1st field is sentence ID, 2nd field is text to process, 3rd field is class
 
-import csv
 import os
 import sys
+import io
+import csv
 os.chdir(os.path.dirname(sys.argv[0]))###change this file path to your local folder
 
 import ourfeatures2 # ourfeatures2.py is bepoke util to extract NLTK POS features from sentences
@@ -25,8 +26,8 @@ else:
     FOUT = 'CSVfiles\\featuresDump2.csv'
 print("Writing output to ", FOUT)
 
-fin = open(FNAME, 'rt')
-fout = open(FOUT, 'wt', newline='')
+fin = io.open(FNAME, 'rt')
+fout = io.open(FOUT, 'wt', newline='')
 
 keys = ["id",
 "wordCount",

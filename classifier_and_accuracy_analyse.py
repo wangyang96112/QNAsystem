@@ -19,7 +19,8 @@ import ourfeatures2
 
 FNAME = 'CSVfiles\\featuresDump2.csv' # !! Modify this to the CSV data location
 FNAME1 = 'CSVfiles\\model.pickle'
-df = pd.read_csv(filepath_or_buffer = FNAME, )   
+FNAME2 = 'CSVfiles\\model1.pickle'
+df = pd.read_csv(filepath_or_buffer = FNAME, encoding = 'utf-8')   
 print(str(len(df)), "rows loaded")
 
 # Strip any leading spaces from col names
@@ -48,16 +49,18 @@ predout = pd.DataFrame({ 'id' : test['id'], 'predicted' : preds, 'actual' : test
 print(predout)
 
 ## Cross-check accuracy ##
-print(pd.crosstab(test['class'], preds, rownames=['actual'], colnames=['preds']))
-print("\n",pd.crosstab(test['class'], preds, rownames=['actual']
-                       , colnames=['preds']).apply(lambda r: round(r/r.sum()*100,2), axis=1) )
+#print(pd.crosstab(test['class'], preds, rownames=['actual'], colnames=['preds']))
+#print("\n",pd.crosstab(test['class'], preds, rownames=['actual']
+#                       , colnames=['preds']).apply(lambda r: round(r/r.sum()*100,2), axis=1) )
 
 from sklearn.metrics import accuracy_score
 print("\n\nAccuracy Score: ", round(accuracy_score(test['class'], preds),3) )
 
 with open(FNAME1, 'wb') as f:
-    cPickle.dump(clf, f)
+    cPickle.dump(clf, f, protocol = 2)
 
+with open(FNAME2, 'wb') as f:
+    cPickle.dump(clf, f, protocol = 3)
 # in your prediction file                                                                                                                                                                                                           
 
 with open(FNAME1, 'rb') as f:

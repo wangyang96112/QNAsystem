@@ -26,7 +26,7 @@ import functions_for_extracting_pronouns_and_entities_using_api as extract
 ##Parsing the 1st sentence of the answer and extracting the adjectives and nouns
 ################################################################
 
-Questions = pd.read_csv('CSVfiles\\QuestionsWithAnswersAndClassCSV.csv', index_col = 'ID')
+Questions = pd.read_csv('CSVfiles\\QuestionsWithAnswersAndClassCSV.csv', index_col = 'ID', encoding = 'utf-8')
 
 Answers = Questions['ANSWER']
 Questionsonly = Questions['QUESTION']
