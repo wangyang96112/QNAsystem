@@ -48,11 +48,6 @@ predout = pd.DataFrame({ 'id' : test['id'], 'predicted' : preds, 'actual' : test
 
 print(predout)
 
-## Cross-check accuracy ##
-#print(pd.crosstab(test['class'], preds, rownames=['actual'], colnames=['preds']))
-#print("\n",pd.crosstab(test['class'], preds, rownames=['actual']
-#                       , colnames=['preds']).apply(lambda r: round(r/r.sum()*100,2), axis=1) )
-
 from sklearn.metrics import accuracy_score
 print("\n\nAccuracy Score: ", round(accuracy_score(test['class'], preds),3) )
 

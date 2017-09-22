@@ -8,6 +8,11 @@ Created on Thu Sep 14 14:53:02 2017
 ###############################################################
 ##Dependencies
 ###############################################################
+
+Question = "" #This is the input
+serializedJson = "" #this is the output, it is at the end of file at the moment
+nterms = 3
+
 import pickle as cPickle
 import os 
 import sys
@@ -324,10 +329,19 @@ print(list(nn.keys()))
 for key, value in nn.items():
     print(key,': ', value.encode('UTF-8'))
 
+import json
+
+for key in nn.keys():
+  if type(key) is not str:
+    try:
+      nn[str(key)] = nn[key]
+    except:
+      try:
+        nn[repr(key)] = nn[key]
+      except:
+        pass
+    del nn[key]
     
+serializedJson = json.dumps(nn, ensure_ascii=False)
 
-
-
-
-
-
+print(serializedJson)

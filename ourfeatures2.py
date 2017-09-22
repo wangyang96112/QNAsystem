@@ -28,6 +28,7 @@ import string
 import itertools
 
 line = ["xxx","Oracle 12.2 will be released? for on-premises, users on. 15 March 2017",0,"S"]
+#
 
 pos = []           #list of PartsOfSpeech
 
